@@ -1,0 +1,10 @@
+/*! Login Page css */
+/*! Auto cleaned css to delete unused css*/
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);*{box-sizing:border-box;margin:0;padding:0;font-family:Raleway,sans-serif}body{background:linear-gradient(90deg,#f3bec3,#c55055);overflow:hidden}.container{display:flex;align-items:center;justify-content:center;min-height:100vh}.screen{background:linear-gradient(90deg,#ab585c,#ba777c);position:relative;height:600px;width:360px;box-shadow:0 0 24px #6c4043}.screen__content{z-index:1;position:relative;height:100%}.screen__background{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;-webkit-clip-path:inset(0 0 0 0);clip-path:inset(0 0 0 0)}.screen__background__shape{transform:rotate(45deg);position:absolute}.screen__background__shape1{height:520px;width:520px;background:#fff;top:-50px;right:120px;border-radius:0 72px 0 0}.screen__background__shape2{height:220px;width:220px;background:#b16365;top:-172px;right:0;border-radius:32px}.screen__background__shape3{height:540px;width:190px;background:linear-gradient(270deg,#a95558,#a3656b);top:-24px;right:0;border-radius:32px}.screen__background__shape4{height:400px;width:200px;background:#bc7b81;top:420px;right:50px;border-radius:60px}.login{width:320px;padding:30px;padding-top:156px}.w3-center{margin-top:10px;color:#a84a54}
+
+
+/*! Positioning login button container*/
+#firebaseui-auth-container {
+  margin-top: 25%;
+}
