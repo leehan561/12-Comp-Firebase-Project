@@ -2,38 +2,39 @@
 <html lang="en">
 
 <head>
-  <title>Game Page</title>
-  <!-- META TAGS-->
+  <title>Leehan Ishrak 12COMP - Game</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- Stylesheets -->
-  <!-- W3 CSS -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <!-----------Stylesheets -------------------------------------------------------------->
   <!-- Bootstrap -->
   <link href="css/bootstrap2.min.css" rel="stylesheet">
-  <link href="css/game.css" rel="stylesheet">
-  <!-- Snake Game Stylesheets-->
+
+  <!-- Game CSS-->
   <link href="css/snake.css" rel="stylesheet">
+  <link href="css/game.css" rel="stylesheet">
+
+  <!-- W3 CSS (Registration Modal) -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+  <!-- (Used for Snake)-->
   <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js"
     integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD"
     crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
-  <!--Firebase Libraries-->
+
+  <!---------------------Firebase Libraries---------------------------------------------->
   <!-- Firebase App is always required & must be listed 1st -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-
-
-
 </head>
 
 <body>
-  <!-- //// NAVBAR //// -->
+  <!-------------------------Navbar ----------------------------------------------------->
   <header id="main-header">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
       <div class="container1">
@@ -47,25 +48,26 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <!-- Navigation Links -->
+        <!-- Nav Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <!-- Admin Access Button-->
             <li class="nav-item active">
-              <a class="nav-link" onclick="adminButton()" href="#" id="adminAccessBtn">Admin Access</a>
+              <button class="offset " onclick="adminButton()" id="adminAccessBtn">Admin Access</button>
             </li>
             <!-- Logout Button-->
             <li class="nav-item">
-              <a class="nav-link" href="#" id='logout-btn'>Logout</a>
+              <button class="offset" id='logout-btn'>Logout</button>
+              <!--               <a class="nav-link" href="#" id='logout-btn'>Logout</a> -->
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  <!-- Navbar End-->
+  <!----------------------------Navbar End----------------------------------------------->
 
-  <!-- snake part -->
+  <!----------------------------Snake Section ------------------------------------------->
   <div class="container noselect">
     <div class="wrapper">
       <button id="replay">
@@ -78,17 +80,53 @@
       <div id="ui">
         <h2>SCORE
         </h2>
-        <span id="score">0</span>
+        <span id="score">00</span>
       </div>
     </div>
     <div id="author">
       <h1>SNAKE.LI</h1> <span>by Leehan Ishrak</span>
     </div>
   </div>
+  <!----------------------------Snake Section End --------------------------------------->
 
-  <!-- Personal JS scripts-->
-  <script src="js/fireBase.js"></script>
-  <script src="js/mainFireBase.js"></script>
+  <!-------------------------- Registration Modal---------------------------------------->
+  <!-- The following code is taken from W3 CSS Template with a few modifications-->
+  <div class="w3-container">
+
+    <div id="id01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+        <div class="w3-center"><br>
+          <img src="" id="profilePic" alt="Avatar" class=" w3-margin-top w3-border w3-border-black">
+        </div>
+
+        <form id="f_registrationForm" class="w3-container">
+          <div class="w3-section">
+
+            <label style="color: #d78536;"><b>Username</b><a class="w3-text-red">*</a></label>
+            <input id="i_username" autocomplete="off" class="w3-input w3-border" type="text"
+              placeholder="Enter A Display Name" name="usrname" required>
+            <p id="p_usernameErr"></p>
+
+            <label class="w3-margin-top" style="color: #d78536"><b>Age</b><a class="w3-text-red">*</a></label>
+            <input id="i_age" autocomplete="off" class="w3-input w3-border" type="number" placeholder="Enter Your Age"
+              name="age" required>
+            <p id="p_ageErr"></p>
+
+            <button class="w3-button w3-text-white w3-block w3-section w3-padding" type="button"
+              onclick="registrationSubmit();" style="background-color: #d78536" type="submit">Register</button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <!-------------------------- Registration Modal End ---------------------------------->
+
+  <!-- Personal JS scripts--->
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
   <script src="js/admin.js"></script>
   <script src="js/game.js"></script>
 

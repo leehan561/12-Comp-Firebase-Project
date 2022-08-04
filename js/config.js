@@ -1,3 +1,5 @@
+// Firebase Config Script//
+
 var app_firebase = {};
 
 (function(){

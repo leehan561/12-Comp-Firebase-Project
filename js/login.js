@@ -1,3 +1,5 @@
+// Firebase Authentication (LOGIN) script file // 
+
 (function(){
   // Initialize the FirebaseUI Widget using Firebase.
   var ui = new firebaseui.auth.AuthUI(firebase.auth());

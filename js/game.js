@@ -1,3 +1,4 @@
+// Snake Script file //
 
 let dom_replay = document.querySelector("#replay");
 let dom_score = document.querySelector("#score");
@@ -7,6 +8,9 @@ let CTX = dom_canvas.getContext("2d");
 
 const W = (dom_canvas.width = 800);
 const H = (dom_canvas.height = 800);
+
+var mySound1 = new Audio('sounds/mixkit-arcade-space-shooter-dead-notification-272.wav');
+var mySound = new Audio('sounds/mixkit-video-game-retro-click-237.wav');
 
 let snake,
   food,
@@ -317,6 +321,9 @@ class Particle {
   }
 }
 
+
+
+
 function incrementScore() {
   score++;
   dom_score.innerText = score.toString().padStart(2, "0");
@@ -327,6 +334,8 @@ function fireworkSplash() {
     let vel = new helpers.Vec(Math.random() * 6 - 3, Math.random() * 6 - 3);
     let position = new helpers.Vec(food.pos.x, food.pos.y);
     particles.push(new Particle(position, currentHue, food.size, vel));
+    mySound.play();
+
   }
 }
 
@@ -367,6 +376,7 @@ function gameOver() {
   score > maxScore ? (maxScore = score) : null;
   window.localStorage.setItem("maxScore", maxScore);
   //vv Color of game over screen text vv//
+  mySound1.play();
   CTX.fillStyle = "#d78536";
   //^^//
   CTX.textAlign = "center";
@@ -375,6 +385,7 @@ function gameOver() {
   CTX.font = "15px Poppins, sans-serif";
   CTX.fillText(`SCORE   ${score}`, W / 2, H / 2 + 60);
   CTX.fillText(`MAXSCORE   ${maxScore}`, W / 2, H / 2 + 80);
+
 }
 
 function reset() {
