@@ -9,8 +9,15 @@ let CTX = dom_canvas.getContext("2d");
 const W = (dom_canvas.width = 800);
 const H = (dom_canvas.height = 800);
 
+// Sounds // 
+// Level up sound // 
 var mySound1 = new Audio('sounds/mixkit-arcade-space-shooter-dead-notification-272.wav');
+//Game over sound // 
 var mySound = new Audio('sounds/mixkit-video-game-retro-click-237.wav');
+
+// Highscore variable // 
+var highscore = 0;
+gameScore.highScore = 0;
 
 let snake,
   food,
@@ -136,6 +143,7 @@ let helpers = {
   }
 };
 
+// Movement keys // 
 let KEY = {
   w: false,
   d: false,
@@ -148,6 +156,7 @@ let KEY = {
     this.s = false;
   },
   listen() {
+    // onlick function //
     addEventListener(
       "keydown",
       (e) => {
@@ -210,6 +219,7 @@ class Snake {
       this.pos.x = W - cellSize;
     }
   }
+  // Movement function //
   controlls() {
     let dir = this.size;
     if (KEY.w) {
@@ -322,19 +332,23 @@ class Particle {
 }
 
 
-
-
+// Score function //
 function incrementScore() {
   score++;
   dom_score.innerText = score.toString().padStart(2, "0");
+      gameScore.highScore = gameScore.highScore + 1;
+    console.log("Score: " + gameScore.highScore);
+    return true;
 }
 
+// Particles that come out of snake after consuming food //
 function fireworkSplash() {
   for (let i = 0; i < fireworkParticleCount; i++) {
     let vel = new helpers.Vec(Math.random() * 6 - 3, Math.random() * 6 - 3);
     let position = new helpers.Vec(food.pos.x, food.pos.y);
     particles.push(new Particle(position, currentHue, food.size, vel));
     mySound.play();
+
 
   }
 }
@@ -371,12 +385,23 @@ function loop() {
   }
 }
 
+// game over //
 function gameOver() {
+
+  if (checkHighscore(gameScore.highScore, "highScore")) {
+    // Updating score after death
+    console.log("New Highscore: " + gameScore.highScore);
+    scoresReference.update({
+      highScore: gameScore.highScore,
+    });
+  }
+  gameScore.highScore = 0;
+
   maxScore ? null : (maxScore = score);
   score > maxScore ? (maxScore = score) : null;
   window.localStorage.setItem("maxScore", maxScore);
-  //vv Color of game over screen text vv//
   mySound1.play();
+  //vv Color of game over screen text vv//
   CTX.fillStyle = "#d78536";
   //^^//
   CTX.textAlign = "center";
@@ -388,6 +413,7 @@ function gameOver() {
 
 }
 
+// Resetting game // 
 function reset() {
   dom_score.innerText = "00";
   score = "00";
@@ -414,8 +440,6 @@ logoutBtn.addEventListener('click', e => {
 function adminButton() {
   window.location = "admin.html";
 }
-
-
 
 
 initialize();

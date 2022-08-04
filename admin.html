@@ -8,7 +8,7 @@
 
   <!--Style sheets-->
   <link href="css/admin.css" rel="stylesheet">
-   <!-- Bootstrap -->
+  <!-- Bootstrap -->
   <link href="css/bootstrap2.min.css" rel="stylesheet">
   <!-- W3CSS -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
@@ -37,7 +37,7 @@
 
 <body>
 
-<!-------------------------Navbar ----------------------------------------------------->
+  <!-------------------------Navbar ----------------------------------------------------->
   <header id="main-header">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
       <div class="container1">
@@ -51,36 +51,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <!-- Nav Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <!-- Admin Access Button-->
-            <li class="nav-item active">
-              <a class="nav-link" onclick="adminButton()" href="#" id="adminAccessBtn">Admin Access</a>
-            </li>
-            <!-- Logout Button-->
-            <li class="nav-item">
-              <a class="nav-link" href="#" id='logout-btn'>Logout</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
   </header>
   <!----------------------------Navbar End----------------------------------------------->
 
+  <!----------------------------Admin Section-------------------------------------------->
 
-
-
-
-
-
-
-
-
-
-
-  
   <section id="s_adminPage">
     <div class="wrapper d-flex align-items-stretch">
 
@@ -91,7 +68,7 @@
           <!-- Links -->
           <ul class="list-unstyled components mb-5">
             <li>
-              <a href="#" id="b_adHome" onclick="backButton()">Back</a>
+              <button class="offset" id='b_adHome' onclick="backButton()">Back</button>
             </li>
           </ul>
 
@@ -103,7 +80,9 @@
       </nav>
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
+        
         <!-- Table -->
+          <!-- (Modified template from youtube video)-->
         <table>
 
           <thead>
@@ -113,7 +92,6 @@
             <th>Age</th>
             <th>Email</th>
             <th>Snake Highscore</th>
-            <th>Ball Highscore</th>
             <th>UID</th>
             <th>Control Centre</th>
           </thead>
@@ -141,16 +119,14 @@
             <div class="modal-body">
               <label class="labs">Name: </label>
               <input type="text" id="nameMod"> <br>
-              <label class="labs">IGN: </label>
+              <label class="labs">Username: </label>
               <input type="text" id="displayNameMod"> <br>
               <label class="labs">Age: </label>
               <input type="text" id="ageMod"> <br>
               <label class="labs">Email: </label>
               <input type="text" id="emailMod"> <br>
               <label class="labs">Snake HS: </label>
-              <input type="text" id="snakeHsMod"> <br>
-              <label class="labs">Ball HS: </label>
-              <input type="text" id="ballHsMod"> <br>
+              <input type="text" id="highscoreMod"> <br>
               <label class="labs">UID: </label>
               <input type="text" id="uidMod"> <br>
             </div>
@@ -161,16 +137,14 @@
           </div>
         </div>
       </div>
-      <!-- Modal End -->
-
     </div>
   </section>
-
+  <!----------------------------Admin Section End---------------------------------------->
+  
   <!-- Personal JS scripts-->
   <script src="js/config.js"></script>
   <script src="js/firebase.js"></script>
   <script src="js/admin.js"></script>
-
 </body>
 
 

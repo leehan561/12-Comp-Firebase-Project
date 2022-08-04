@@ -1,51 +1,10 @@
-/*------------------------------------------------------------------
-[Master Stylesheet]
-
-Author: AtypicalThemes
-Template: Strider - A Game Studio Template
-Version:	1.0
-
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
-
--------------------------------------------------------------------
-Table of contents
-
-    I.General
-    II.Page Prealoader
-    III.Header & Navigation
-    IV.Hero Section
-    V.About Section
-    VI.Games Section
-    VII.Team Section
-    VIII.Careers Section
-    IX.Contact Section
-    X.Footer
-    XI.404 Page
-    XII.Responsive Styles
-
--------------------------------------------------------------------
-[Color codes]
-
-Background:	#111; (black)
-Content:	#FFF; (white)
-Footer:		#070707; (black)
-
-a (standard):	#F5F5F5; (white)
-a (hover): #E48632; (orange)
-a (visited):	#E48632;
-a (active):	#E48632;
-
-[Colors]
-
-Primary Color: #E48632;
--------------------------------------------------------------------*/
+/*! css for game navbar */
+/*! Auto clean doesn't work */
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500'); /* Raleway Font */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans'); /* Open Sans Font */
 @font-face {
-    font-family: 'Anurati';
+    font-family: 'Anurati'!important;
     src: url('../fonts/Anurati-Regular.otf');
 }
 
@@ -986,12 +945,9 @@ button {
         float: none;
     }
 }
-/* 
-#adminAccessBtn {
-  display: none;
-}
- */
 
+
+/*! Error Messages */
 #p_usernameErr {
   color: red;
   font-size: 13px;
@@ -1011,7 +967,14 @@ button {
   margin: 0;
 }
 
+/*! Buttons */
 
+/*! admin button visibility*/
+#adminBtn {
+  display: none;
+}
+
+/*! admin button + Logout Button customization */
 .offset {
   box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
 }
@@ -1034,3 +997,7 @@ button {
   margin: 0.5rem;
   padding: 1em 2em;
 }
+
+
+
+

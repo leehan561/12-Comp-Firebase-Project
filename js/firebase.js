@@ -2,15 +2,22 @@
 
 var mainApp = {};
 
-// Names of firebase paths
+// Names of firebase paths // 
 const DETAILS = "userDetails";
 const ADMIN = "userAdmin"
-const PUBLIC = "public";
-const PRIVATE = "private";
-const SCORES = "userScores";
+const PUBLICDETAILS = "public";
+const PRIVATEDETAILS = "private";
+const SCORES = "userScore";
 
-// Objects to store user information in
-// Created with format matching the firebase
+// variables storing references to database //
+var usersReference = "";
+var detailsReference = "";
+var privateReference = "";
+var publicReference = "";
+var adminReference = "";
+var scoresReference = "";
+
+// Variables to store user information //
 var adminAccess = false;
 
 var userDetailsPrivate = {
@@ -28,19 +35,9 @@ var userDetails = {
   uid: "—"
 };
 
-var gameScores = {
-  snakeScore: 0,
-  ballScore: 0,
+var gameScore = {
+  highScore: 0,
 };
-
-
-// variables where I will store references to database //
-var usersReference = "";
-var detailsReference = "";
-var privateReference = "";
-var publicReference = "";
-var adminReference = "";
-var scoresReference = "";
 
 
 (function() {
@@ -59,8 +56,8 @@ var scoresReference = "";
       // -------------Database references-----------------------------------------------//
       detailsReference = firebase.database().ref(DETAILS);
       usersReference = detailsReference.child(userDetails.uid);
-      privateReference = usersReference.child(PRIVATE);
-      publicReference = usersReference.child(PUBLIC);
+      privateReference = usersReference.child(PRIVATEDETAILS);
+      publicReference = usersReference.child(PUBLICDETAILS);
       scoresReference = publicReference.child(SCORES);
       //---------- END OF Database references-------------------------------------------//
 
@@ -68,25 +65,23 @@ var scoresReference = "";
       publicReference.child("displayName").once("value", snapshot => {
         // Check if the user data already exists
         if (snapshot.exists()) {
-          console.log("User Is Already Registered");
+          console.log("User Registration already complete");
         }
 
         else {
-          // Write details to database
-          publicReference.set(userDetailsPublic);
-          privateReference.set(userDetailsPrivate);
-
-          // Also display the register modal so user can register
+          // Otherwise display register form so user can register
           var profilePicture = document.getElementById("profilePic");
           profilePicture.src = userDetailsPublic.photoURL;
-
           document.getElementById('id01').style.display = 'block';
+          scoresReference.set(gameScore);
 
-          scoresReference.set(gameScores);
+          // Save details to database
+          publicReference.set(userDetailsPublic);
+          privateReference.set(userDetailsPrivate);
         }
       })
-
-
+      
+// Checks if user is admin
       checkUserAdmin();
 
     }
@@ -172,10 +167,10 @@ userName.addEventListener('input', function(e) {
 // Registration Details submitted
 function registrationSubmit() {
   // Push the input values into registration info object
-  userDetailsPublic.displayName = userName.value;
   userDetailsPrivate.age = userAge.value;
+  userDetailsPublic.displayName = userName.value;
 
-  if (validName && validAge) {
+  if (validName & validAge) {
     // If validName & Valid Age = True then write user registration info to database //
     console.log("Writing registration info to database");
     publicReference.update(userDetailsPublic);
@@ -185,4 +180,26 @@ function registrationSubmit() {
     document.getElementById("id01").style.display = "none";
   }
 
+}
+
+function checkHighscore(_currentScore, _gameScore) {
+  firebase.database().ref(DETAILS + "/" + userDetails.uid + "/" + PUBLICDETAILS + "/" + SCORES + "/" + _gameScore).on("value", function(snapshot) {
+    highscore = snapshot.val();
+  })
+
+  if (_currentScore > highscore) {
+    return true;
+  }
+
+  else {
+    return false;
+  }
+}
+
+function getHighscore(_gameScore) {
+  firebase.database().ref(DETAILS + "/" + userDetails.uid + "/" + PUBLICDETAILS + "/" + SCORES + "/" + _gameScore).on("value", function(snapshot) {
+    highscore = snapshot.val();
+  })
+
+  return highscore;
 }

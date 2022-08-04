@@ -1,4 +1,5 @@
 // Firebase Config Script//
+// (DO NOT CHANGE) // 
 
 var app_firebase = {};
 
