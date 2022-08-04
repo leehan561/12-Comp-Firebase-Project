@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Game Page</title>
+  <!-- META TAGS-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Stylesheets -->
+  <!-- W3 CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <!-- Bootstrap -->
+  <link href="css/bootstrap2.min.css" rel="stylesheet">
+  <link href="css/game.css" rel="stylesheet">
+  <!-- Snake Game Stylesheets-->
+  <link href="css/snake.css" rel="stylesheet">
+  <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js"
+    integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+  <!--Firebase Libraries-->
+  <!-- Firebase App is always required & must be listed 1st -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+
+
+
+</head>
+
+<body>
+  <!-- //// NAVBAR //// -->
+  <header id="main-header">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+      <div class="container1">
+        <!-- Site Logo -->
+        <a id="logo" class="navbar-brand" href="#"><img class="img-fluid" src="images/logo.png" alt="site logo"></a>
+        <!-- Dropdown Button -->
+        <button id="hamburger" class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <!-- Admin Access Button-->
+            <li class="nav-item active">
+              <a class="nav-link" onclick="adminButton()" href="#" id="adminAccessBtn">Admin Access</a>
+            </li>
+            <!-- Logout Button-->
+            <li class="nav-item">
+              <a class="nav-link" href="#" id='logout-btn'>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Navbar End-->
+
+  <!-- snake part -->
+  <div class="container noselect">
+    <div class="wrapper">
+      <button id="replay">
+        <i class="fas fa-play"></i>
+        RESTART
+      </button>
+      <div id="canvas">
+
+      </div>
+      <div id="ui">
+        <h2>SCORE
+        </h2>
+        <span id="score">0</span>
+      </div>
+    </div>
+    <div id="author">
+      <h1>SNAKE.LI</h1> <span>by Leehan Ishrak</span>
+    </div>
+  </div>
+
+  <!-- Personal JS scripts-->
+  <script src="js/fireBase.js"></script>
+  <script src="js/mainFireBase.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+
+</html>
