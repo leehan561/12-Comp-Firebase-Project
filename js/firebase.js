@@ -80,8 +80,8 @@ var gameScore = {
           privateReference.set(userDetailsPrivate);
         }
       })
-      
-// Checks if user is admin
+
+      // Checks if user is admin
       checkUserAdmin();
 
     }
