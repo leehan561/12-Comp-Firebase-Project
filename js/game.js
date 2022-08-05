@@ -277,7 +277,8 @@ class Food {
   draw() {
     let { x, y } = this.pos;
     CTX.globalCompositeOperation = "lighter";
-    CTX.shadowBlur = 20;
+    // glow around food// 
+    // CTX.shadowBlur = 20;
     CTX.shadowColor = this.color;
     CTX.fillStyle = this.color;
     CTX.fillRect(x, y, this.size, this.size);
