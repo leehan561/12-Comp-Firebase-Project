@@ -1,4 +1,4 @@
-// Js script for Admin page (Modified from youtube video) //
+// Js script for Admin page (Modified from a youtube video) //
 
 // Variables //
 var userNo;
@@ -47,7 +47,7 @@ function selectAllData() {
 // On window load automatically run function to get all user data from database //
 window.onload = selectAllData();
 
-// Filling admin table //
+// Filling admin table with name, display name, age, email, highscore, uid //
 function addItemsToTable(_name, _displayName, _age, _email, _gameHs, _UID) {
   var tbody = document.getElementById("tbody1");
   var trow = document.createElement("tr");
@@ -77,7 +77,7 @@ function addItemsToTable(_name, _displayName, _age, _email, _gameHs, _UID) {
   trow.appendChild(td6);
   trow.appendChild(td7);
 
-  // Button div containing other buttons when menu opened // 
+  // Button div containing delete/update buttons when menu opened // 
   var controlDiv = document.createElement("div");
   controlDiv.innerHTML += '<button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillTBoxes(' + userNo + ')">Edit Record</button>'
 
@@ -85,7 +85,7 @@ function addItemsToTable(_name, _displayName, _age, _email, _gameHs, _UID) {
   tbody.appendChild(trow);
 }
 
-// Fills boxes in the update records form // 
+// Fills boxes in the update/delete records form // 
 function fillTBoxes(_index) {
   --_index
   modName.value = userList[_index][0];
@@ -99,7 +99,7 @@ function fillTBoxes(_index) {
 
 // Updating user records to firebase // 
 function updUser() {
-  // Update private path //
+  // Updating private path //
   firebase.database().ref(DETAILS + "/" + modUID.value).child(PRIVATEDETAILS).update(
     {
       name: modName.value,
@@ -115,7 +115,7 @@ function updUser() {
       }
 
       else {
-        // If no error found, then update data to path //
+        // If no error found, then update data to path display name//
         firebase.database().ref(DETAILS + "/" + modUID.value).child(PUBLICDETAILS).update(
           {
             displayName: modDisplayName.value,
@@ -128,7 +128,7 @@ function updUser() {
             }
 
             else {
-              // If no error found, then update data to path //
+              // If no error found, then update data to path highscore //
               firebase.database().ref(DETAILS + "/" + modUID.value + "/" + PUBLICDETAILS).child(SCORES).update(
                 {
                   highScore: modHighscore.value,
@@ -179,7 +179,7 @@ function checkUserAdmin() {
     }
 
     else {
-      // User is not admin //
+      // User is not admin + keep admin button hidden (style css)//
       console.log("User is not a Admin");
     }
   })

@@ -1,4 +1,4 @@
-// Firebase Authentication (LOGIN) script file // 
+// Firebase Authentication (LOGIN) script file (followed from firebase website) // 
 
 (function(){
   // Initialize the FirebaseUI Widget using Firebase.

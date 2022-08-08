@@ -1,5 +1,6 @@
 /*! CSS for Snake game. */
 /*! not in game css because of overlapping styles*/
+
 @font-face {
   font-family: "game";
   src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap");

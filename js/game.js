@@ -19,6 +19,7 @@ var mySound = new Audio('sounds/mixkit-video-game-retro-click-237.wav');
 var highscore = 0;
 gameScore.highScore = 0;
 
+//snake 
 let snake,
   food,
   currentHue,
@@ -27,7 +28,7 @@ let snake,
   isGameOver = false,
   tails = [],
   score = 00,
-  maxScore = window.localStorage.getItem("maxScore") || undefined,
+  maxScore = gameScore.highScore,
   particles = [],
   //vv The amount of fireworks particles popping up when consuming food vv//
   fireworkParticleCount = 21,
@@ -71,7 +72,6 @@ let helpers = {
   drawGrid() {
     CTX.lineWidth = 1.1;
     CTX.strokeStyle = "#232332";
-    CTX.shadowBlur = 0;
     for (let i = 1; i < cells; i++) {
       let f = (W / cells) * i;
       CTX.beginPath();
@@ -143,7 +143,7 @@ let helpers = {
   }
 };
 
-// Movement keys // 
+// Movement keys WASD // 
 let KEY = {
   w: false,
   d: false,
@@ -156,7 +156,7 @@ let KEY = {
     this.s = false;
   },
   listen() {
-    // onlick function //
+    // onlick keys function //
     addEventListener(
       "keydown",
       (e) => {
@@ -175,7 +175,7 @@ let KEY = {
     );
   }
 };
-
+// snake color, size, spawn point etc.// 
 class Snake {
   constructor(i, type) {
     this.pos = new helpers.Vec(W / 2, H / 2);
@@ -191,10 +191,8 @@ class Snake {
   draw() {
     let { x, y } = this.pos;
     CTX.fillStyle = this.color;
-    CTX.shadowBlur = 20;
-    CTX.shadowColor = "rgba(255,255,255,.3 )";
+    
     CTX.fillRect(x, y, this.size, this.size);
-    CTX.shadowBlur = 0;
     if (this.total >= 2) {
       for (let i = 0; i < this.history.length - 1; i++) {
         let { x, y } = this.history[i];
@@ -219,7 +217,7 @@ class Snake {
       this.pos.x = W - cellSize;
     }
   }
-  // Movement function //
+  // Movement function WASD keys//
   controlls() {
     let dir = this.size;
     if (KEY.w) {
@@ -235,6 +233,7 @@ class Snake {
       this.dir = new helpers.Vec(dir, 0);
     }
   }
+  // running into your own body causes //
   selfCollision() {
     for (let i = 0; i < this.history.length; i++) {
       let p = this.history[i];
@@ -265,6 +264,7 @@ class Snake {
   }
 }
 
+// snake food spawn + random colors// 
 class Food {
   constructor() {
     this.pos = new helpers.Vec(
@@ -277,13 +277,10 @@ class Food {
   draw() {
     let { x, y } = this.pos;
     CTX.globalCompositeOperation = "lighter";
-    // glow around food// 
-    // CTX.shadowBlur = 20;
-    CTX.shadowColor = this.color;
+    
     CTX.fillStyle = this.color;
     CTX.fillRect(x, y, this.size, this.size);
     CTX.globalCompositeOperation = "source-over";
-    CTX.shadowBlur = 0;
   }
   spawn() {
     let randX = ~~(Math.random() * cells) * this.size;
@@ -316,8 +313,6 @@ class Particle {
       .split(",")
       .map((n) => +n);
     let [r, g, b] = helpers.hsl2rgb(hsl[0], hsl[1] / 100, hsl[2] / 100);
-    CTX.shadowColor = `rgb(${r},${g},${b},${1})`;
-    CTX.shadowBlur = 0;
     CTX.globalCompositeOperation = "lighter";
     CTX.fillStyle = `rgb(${r},${g},${b},${1})`;
     CTX.fillRect(x, y, this.size, this.size);
@@ -354,10 +349,12 @@ function fireworkSplash() {
   }
 }
 
+// clear canvas content // 
 function clear() {
   CTX.clearRect(0, 0, W, H);
 }
 
+// setup function // 
 function initialize() {
   CTX.imageSmoothingEnabled = false;
   KEY.listen();
@@ -386,7 +383,7 @@ function loop() {
   }
 }
 
-// game over //
+// game over function, display end score, play sound, display game over //
 function gameOver() {
 
   if (checkHighscore(gameScore.highScore, "highScore")) {
@@ -442,5 +439,5 @@ function adminButton() {
   window.location = "admin.html";
 }
 
-
+// run setup function // 
 initialize();
